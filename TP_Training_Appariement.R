@@ -1,5 +1,5 @@
 
-# auto test, entraÓnement objectif partiel 
+# auto test, entra√Ænement objectif partiel 
 
 #=================================== Exercice 1 
 
@@ -7,23 +7,23 @@ avant <- c(167, 150, 175, 163, 149, 165, 168, 177, 140, 156, 162, 205)
 apres <- c(127, 134, 131, 136, 123, 170, 135, 126, 144, 139, 129, 150)
 
 
-#------1. Afficher les boxplots des deux √©chantillons de pression art√©rielle 
+#------1. Afficher les boxplots des deux √É¬©chantillons de pression art√É¬©rielle 
 
 boxplot(avant,apres, names=c("avant","apres"),main="Pression arterielle avant et apres traitement")
 
-#------2. On souhaite Èvaluer l'association entre le traitement et l'hypertension artÈrielle dans la population
-#      d'hypertendus dont est issu l'Èchantillon. On fixera un risque de premiËre espËce de 5%.
+#------2. On souhaite √©valuer l'association entre le traitement et l'hypertension art√©rielle dans la population
+#      d'hypertendus dont est issu l'√©chantillon. On fixera un risque de premi√®re esp√®ce de 5%.
 
-#--- (a) Donnez l'‚ge de l'estimation de la diffÈrence moyenne de pression artÈrielle de la
-# population dont est issu notre Èchantillon, avec intervalle de confiance ‡ 95%, en justifiant
+#--- (a) Donnez l'√¢ge de l'estimation de la diff√©rence moyenne de pression art√©rielle de la
+# population dont est issu notre √©chantillon, avec intervalle de confiance √† 95%, en justifiant
 
-# Je dÈfinis mon data frame 
+# Je d√©finis mon data frame 
 df <- data.frame(
   avant = c(167, 150, 175, 163, 149, 165, 168, 177, 140, 156, 162, 205),
   apres = c(127, 134, 131, 136, 123, 170, 135, 126, 144, 139, 129, 150)
 )
 
-# je creer ma nouvelle colonne et calcul la moyenne et variance en consÈquence
+# je creer ma nouvelle colonne et calcul la moyenne et variance en cons√©quence
 df$delta <- df$apres - df$avant 
 
 Moy_diff <- mean(df$delta)
@@ -37,29 +37,29 @@ n # 12
 
 # Conditions du TCL 
 # n > 30 or ici il n'y a que 12 patients donc condition non valide
-# VÈrifions si les donnÈes suivent loi normale avec un QQPLOT pour pouvoir faire IC avec Loi de Student 
+# V√©rifions si les donn√©es suivent loi normale avec un QQPLOT pour pouvoir faire IC avec Loi de Student 
 
 qqnorm(df$delta)
 qqline(df$delta)
 
-# Semble suivrent loi normale nous pouvons ainsi utilisÈ student 
+# Semble suivrent loi normale nous pouvons ainsi utilis√© student 
 # soit 
-moyenne + qt(c(0.025, 0.5, 0.975), n - 1) * sqrt(variance / n) # L'IC de la diffÈrence
+moyenne + qt(c(0.025, 0.5, 0.975), n - 1) * sqrt(variance / n) # L'IC de la diff√©rence
 
 # [-40.00195 -27.75000 -15.49805]
 
 # soit 
-##=== en precisant a R que les donnÈes sont appariÈes avec paired = TRUE , appariement important ‡ prendre en compte.
+##=== en precisant a R que les donn√©es sont appari√©es avec paired = TRUE , appariement important √† prendre en compte.
 t.test(df$apres, df$avant, paired = TRUE, conf.level = 0.95)
 # -40.00195 -15.49805
 
 
-#---(b) PrÈcisez l'hypothËse nulle que vous souhaitez tester, ainsi que l'hypothËse alternative
+#---(b) Pr√©cisez l'hypoth√®se nulle que vous souhaitez tester, ainsi que l'hypoth√®se alternative
 
 # H0 : md = 0 ou mu avant = mu apres donc pas de d'association entre traitement et pression arterielle
 # H1 : md != 0 donc association 
 
-#---(c) Quel test pourriez-vous proposer pour rÈpondre ‡ cette question ?
+#---(c) Quel test pourriez-vous proposer pour r√©pondre √† cette question ?
 
 # on peut faire : test z , student et wilcoxon si conditions valides. 
 
@@ -69,12 +69,12 @@ t.test(df$apres, df$avant, paired = TRUE, conf.level = 0.95)
 # si on choisi test z il faut que n > 30 ce qui n'est pas le cas
 # donc test de student et ou wilcoxon 
 
-# student condition de validitÈ : di suivent loi normale, qqplot le confirme
+# student condition de validit√© : di suivent loi normale, qqplot le confirme
 # wilcoxon test non parametrique donc pas de condition
 
-#---(e) Doit-il Ítre appariÈ ?
+#---(e) Doit-il √™tre appari√© ?
 
-# Oui car ce sont les mÍmes patients, cas de paired data
+# Oui car ce sont les m√™mes patients, cas de paired data
 
 
 #==== test student 
@@ -87,7 +87,7 @@ qt(0.975, df=11) # 2.20
 
 # valeur absolue t > a valeur seuil donc on rejette H0 
 
-# et p value inferieure ‡ 0.05 donc on rejette bien H0 le test est significatif 
+# et p value inferieure √† 0.05 donc on rejette bien H0 le test est significatif 
 
 # au risque 5% il y a bien association entre traitement et la pression arterielle
 
@@ -103,7 +103,7 @@ wilcox.test(apres,avant,paired=T)
 setwd("C:/Users/gerar/OneDrive/Bureau/MASTER SP/Stat_TP_S1_M1/TP_11_Stat_M1S1")
 df_asthme <- read.csv2("dataset_ex2.csv")
 
-#---1. DÈcrire les donnÈes (nombres de lignes et de colonnes, afficher les premiËres lignes, 
+#---1. D√©crire les donn√©es (nombres de lignes et de colonnes, afficher les premi√®res lignes, 
 #     types des colonnes, distribution des colonnes, nombres de valeurs manquantes)
 
 
@@ -114,10 +114,10 @@ str(df_asthme)
 summary(df_asthme)
 View(df_asthme)
 
-#------2. On souhaite dÈterminer s'il existe une diff√©rence d'amÈlioration entre les traitements A et B.
+#------2. On souhaite d√©terminer s'il existe une diff√É¬©rence d'am√©lioration entre les traitements A et B.
 
-#---(a) Donnez l'estimation de la proportion d'm√©lioration en fonction du mÈdicament 
-# dans la population dont est issu notre √©chantillon, avec l'intervalle de confiance ‡ 95% 
+#---(a) Donnez l'estimation de la proportion d'm√É¬©lioration en fonction du m√©dicament 
+# dans la population dont est issu notre √É¬©chantillon, avec l'intervalle de confiance √† 95% 
 
 # faut que je fasse pour traitement A et traitement B 
 
@@ -126,7 +126,7 @@ View(df_asthme)
 # Traitement A 
 
 n_A <- table(df_asthme$A)
-n_A # AmÈlioration    Pas d'amÈlioration 
+n_A # Am√©lioration    Pas d'am√©lioration 
 #      191                 309 
 
 ntot <- 500
@@ -155,7 +155,7 @@ IC # 0.3394118 0.4245882
 
 table(df_asthme$B)
 
-# AmÈlioration   Pas d'amÈlioration 
+# Am√©lioration   Pas d'am√©lioration 
 # 196                 304 
 
 
@@ -168,52 +168,52 @@ IC <- c(IC_lower,IC_upper)
 IC # 0.3492085 0.4347915
 
 
-#---(b) Pr√©cisez l'hypothËse nulle que vous souhaitez tester, ainsi que l'hypothËse alternative.
+#---(b) Pr√É¬©cisez l'hypoth√®se nulle que vous souhaitez tester, ainsi que l'hypoth√®se alternative.
 
-# H0 : pi A = pi B Pas de diff√©rence d'amÈlioration entre les traitements A et B.
+# H0 : pi A = pi B Pas de diff√É¬©rence d'am√©lioration entre les traitements A et B.
 # H1 : piA != piB Difference 
 
 #---(c) Quel test pourriez-vous proposer ?
 
-# ce sont deux va qualitative et appariÈes donc test KHI2 Mc Nemar 
+# ce sont deux va qualitative et appari√©es donc test KHI2 Mc Nemar 
 
 #---(d) Sous quelle(s) condition(s) le test choisi est-il valide ?
 # condition : b+c/2 >=5 
 
 table(df_asthme$A,df_asthme$B)
-(113+118)/2 # 115.5 condition validitÈe
+(113+118)/2 # 115.5 condition validit√©e
 
 #---(e) Appariement ? 
 
 # oui car paired data 
 
-#--- (f) Application sur R : Indiquez, le cas √©ch√©ant, la valeur de la statistique de test.
-#--- (g) Application sur R : Quel est le degr√© de signification ? Que concluez-vous 
+#--- (f) Application sur R : Indiquez, le cas √É¬©ch√É¬©ant, la valeur de la statistique de test.
+#--- (g) Application sur R : Quel est le degr√É¬© de signification ? Que concluez-vous 
 
 mcnemar.test(matrix(c(78,118,113,191),2,2),correct=F)
 # McNemar's chi-squared = 0.10823, df = 1, p-value = 0.7422
 
 # valeur seuil = 3.84 
-# valeur stat inferieure ‡ la valeur seuil donc non rejet de H0 
-# pvalue superieur ‡ 0.05 test non significatif on ne rejette pas H0 
-# on conclut au risque 5% qu'il n'y a pas de diffÈrence entre les traitements A et B 
+# valeur stat inferieure √† la valeur seuil donc non rejet de H0 
+# pvalue superieur √† 0.05 test non significatif on ne rejette pas H0 
+# on conclut au risque 5% qu'il n'y a pas de diff√©rence entre les traitements A et B 
 
 
-#-----3. On souhaite dÈterminer s'il existe une diffÈrence d'amÈlioration entre les traitements A et B 
+#-----3. On souhaite d√©terminer s'il existe une diff√©rence d'am√©lioration entre les traitements A et B 
 #        chez les femmes
 
 nb_tot_femme <- sum(df_asthme$sexe=="F") # 239
 
-#---(a)Donnez l'estimation de la proportion d'm√©lioration chez les femmes en
-# fonction du mÈdicament dans la population dont est issu notre √©chantillon, avec l'ntervalle
-# de confiance ‡ 95%
+#---(a)Donnez l'estimation de la proportion d'm√É¬©lioration chez les femmes en
+# fonction du m√©dicament dans la population dont est issu notre √É¬©chantillon, avec l'ntervalle
+# de confiance √† 95%
 
 table(df_asthme$sexe)
 #  F   M 
 # 239  261 
 
 table(df_asthme$sexe=="F",df_asthme$A)
-#       AmÈlioration      Pas d'amÈlioration
+#       Am√©lioration      Pas d'am√©lioration
 #FALSE            76                 185
 #TRUE            115                 124
 
@@ -222,7 +222,7 @@ nb_femme_amelio_A <- 115
 
 
 table(df_asthme$sexe=="F",df_asthme$B)
-#              AmÈlioration    Pas d'amÈlioration
+#              Am√©lioration    Pas d'am√©lioration
 #FALSE            72                 189
 #TRUE            124                 115
 
@@ -252,7 +252,7 @@ IC <- c(IC_lower,IC_upper)
 IC # 0.4554836 0.5821733 
 
 
-# Les donnÈes sont encore appariÈes car ce sont les memes femmes qui ont les 2 traitements 
+# Les donn√©es sont encore appari√©es car ce sont les memes femmes qui ont les 2 traitements 
 
 # Faisons test khi2 Mc Nemar 
 
@@ -267,26 +267,26 @@ df_femme <- df_asthme[df_asthme$sexe=="F",]
 df_femme
 
 table(df_femme$A,df_femme$B)
-#                     AmÈlioration         Pas d'amÈlioration
-#AmÈlioration                  56                  59
-#Pas d'amÈlioration            68                  56
+#                     Am√©lioration         Pas d'am√©lioration
+#Am√©lioration                  56                  59
+#Pas d'am√©lioration            68                  56
 
 (59+68)/2 # 63.5 ok 
 
 mcnemar.test(matrix(c(56,68,59,56),2,2),correct=F)
 # McNemar's chi-squared = 0.6378, df = 1, p-value = 0.4245
 
-# valeur stat inferieure ‡ la valeur seuil 3.84 donc non rejet de H0 
-# pvalue supÈrieure ‡ 0.05 donc non rejet de H0 car test non significatif 
+# valeur stat inferieure √† la valeur seuil 3.84 donc non rejet de H0 
+# pvalue sup√©rieure √† 0.05 donc non rejet de H0 car test non significatif 
 # on conclut qu'il n'y a pas de difference entre les deux traitements chez les femmes AU RISQUE 5%
 
 
-#------4. On souhaite d√©terminer s'il existe une diffÈrence d'amÈlioration avec le traitement B 
+#------4. On souhaite d√É¬©terminer s'il existe une diff√©rence d'am√©lioration avec le traitement B 
 #         selon le sexe du patient.
 
-#---(a) Donnez l'estimation de la proportion d'amÈlioration sous mÈdicament B
-#en fonction du sexe dans la population dont est issu notre Èchantillon, avec l'intervalle de
-#confiance ‡ 95%
+#---(a) Donnez l'estimation de la proportion d'am√©lioration sous m√©dicament B
+#en fonction du sexe dans la population dont est issu notre √©chantillon, avec l'intervalle de
+#confiance √† 95%
 
 table(df_asthme$sexe)
 # F   M 
@@ -299,11 +299,11 @@ df_femme
 df_homme <- df_asthme[df_asthme$sexe=="M",]
 
 table(df_femme$B)
-# AmÈlioration    Pas d'amÈlioration 
+# Am√©lioration    Pas d'am√©lioration 
 #   124                 115
 
 table(df_homme$B)
-# AmÈlioration    Pas d'amÈlioration 
+# Am√©lioration    Pas d'am√©lioration 
 #  72                 189
 
 prop_femme_amelio_B #  0.5188285
@@ -332,16 +332,16 @@ IC # 0.2216390 0.3300852
 ##==== test de l'ecart reduit ou khi-2 ou Fisher
 # application de ces divers tests : 
 
-#=======test khi 2 d'indÈpendance pour Èchantillons non appariÈs
+#=======test khi 2 d'ind√©pendance pour √©chantillons non appari√©s
 
 # si le choix du test est le khi2 d'independance : on regarde s'il y a association 
 # entre l'amelioration du traitement B et le sexe du patient 
 
-# Ainsi H0 : les variables sont indÈpendantes , aucune association entre elles
-# H1 : les variables sont dÈpendantes , association entre elles 
+# Ainsi H0 : les variables sont ind√©pendantes , aucune association entre elles
+# H1 : les variables sont d√©pendantes , association entre elles 
 
-# condition de validitÈ : cij >= 5 
-# condition validitÈ 
+# condition de validit√© : cij >= 5 
+# condition validit√© 
 test_khi2$expected # ok
  
 test_khi2 <- chisq.test(df_asthme$B,df_asthme$sexe, correct=F)
@@ -351,10 +351,10 @@ test_khi2 # X-squared = 30.901, df = 1, p-value = 2.715e-08
 
 qchisq(0.95, df=1) # 3.84 
 
-# valeur stat supÈrieure ‡ la valeur seuil donc rejet de H0 
-# p value infÈrieure a 0.05 donc rejet de H0 
+# valeur stat sup√©rieure √† la valeur seuil donc rejet de H0 
+# p value inf√©rieure a 0.05 donc rejet de H0 
 
-# les variables sont dÈpendantes au risque 5% on conclut ‡ une diffÈrence selon le sexe pour traitement B
+# les variables sont d√©pendantes au risque 5% on conclut √† une diff√©rence selon le sexe pour traitement B
 
 
 #===== test fisher 
@@ -362,10 +362,10 @@ qchisq(0.95, df=1) # 3.84
 fisher.test(df_asthme$B, df_asthme$sexe)
 
 # p-value = 3.207e-08
-# pas de condition de validitÈ et pas de valeur stat direct conclure avec p value 
+# pas de condition de validit√© et pas de valeur stat direct conclure avec p value 
 
 
-# === test z de l'ecart reduit a present pour 2 Èchantillons, notion de prop_commune
+# === test z de l'ecart reduit a present pour 2 √©chantillons, notion de prop_commune
 
 # H0 : pi homme = pi femme 
 # H1 : pi homme != pi femme
@@ -373,7 +373,7 @@ fisher.test(df_asthme$B, df_asthme$sexe)
 propA <- prop_femme_amelio_B
 propB <- prop_homme_amelio_B
 
-# simplifions l'Ècriture
+# simplifions l'√©criture
 
 # nA <- c'est: nb_tot_femme <- 239
 # nB <- c'est: nb_tot_homme <- 261
@@ -396,8 +396,8 @@ pvalue # 2.715458e-08
 
 ###==================   Exercice 3 ====================================
 
-# Le nombre d'hypoglycÈmies (glycÈmie <70 mg/dl) a √©t√© mesur√© durant 2 mois chez 12 patients souffrant
-# de diabËte et soumis successivement ‡ 3 mÈdicaments.
+# Le nombre d'hypoglyc√©mies (glyc√©mie <70 mg/dl) a √É¬©t√É¬© mesur√É¬© durant 2 mois chez 12 patients souffrant
+# de diab√®te et soumis successivement √† 3 m√©dicaments.
 
 mdct_A <- c(21, 22, 20, 20, 24, 28, 28, 20, 24, 25, 23, 21)
 mdct_B <- c(15, 12, 19, 16, 18, 23, 11, 17, 14, 20, 16, 23)
@@ -405,10 +405,10 @@ mdct_C <- c(13, 11, 23, 22, 16, 7, 19, 14, 15, 12, 18, 20)
 
 n <- 12
 
-#-------1. Existe-t-il une association entre ces 3 traitements et le nombre d'hypoglycÈmies ?
+#-------1. Existe-t-il une association entre ces 3 traitements et le nombre d'hypoglyc√©mies ?
 
-#---(a)Donnez l'estimation du nombre moyen d'hypoglycÈmies en fonction des
-# traitements dans la population dont est issu notre Èchantillon, avec IC 95%
+#---(a)Donnez l'estimation du nombre moyen d'hypoglyc√©mies en fonction des
+# traitements dans la population dont est issu notre √©chantillon, avec IC 95%
 
 (moy_A <- mean(mdct_A))
 (moy_B <- mean(mdct_B))
@@ -420,7 +420,7 @@ var_C <- var(mdct_C)
 
 
 # TCL : n> 30 or ici n = 12 donc on en peut pas faire l'IC  
-# en revanche nous pouvons v√©rifier si les donnÈes suivent loi normale 
+# en revanche nous pouvons v√É¬©rifier si les donn√©es suivent loi normale 
 # ce qui nous permettra de faire IC selon student 
 
 # verifions avec qqplot 
@@ -439,19 +439,19 @@ moy_B + qt(c(0.025,0.5,0.975), n-1)*sqrt(var_B/n) # 14.5617 17.0000 19.4383
 # IC pour medoc C
 moy_C + qt(c(0.025,0.5,0.975), n-1)*sqrt(var_C/n) # 12.80635 15.83333 18.86032
 
-#---(b) PrÈcisez l'hypoth√®se nulle que vous souhaitez tester, ainsi que l'hypothËse alternative.
+#---(b) Pr√©cisez l'hypoth√É¬®se nulle que vous souhaitez tester, ainsi que l'hypoth√®se alternative.
 
 # HO : moy A = moy B = moy C 
-# H1 : au moins une diffÈrence
+# H1 : au moins une diff√©rence
 
-#---(c) Quel test pourriez-vous proposer pour r√©pondre √† cette question ?
+#---(c) Quel test pourriez-vous proposer pour r√É¬©pondre √É¬† cette question ?
 
 # il y a plus de deux traitements j'opte pour le test non parametrique de Friedman 
 
 (matrice_hypo <- matrix(c(mdct_A, mdct_B, mdct_C), ncol = 3))
 (matrice_rangs <- t(apply(matrice_hypo, 1, rank)))
 (somme_rangs <- colSums(matrice_rangs))
-# vÈrifions s'il y a ex aequos
+# v√©rifions s'il y a ex aequos
 any(apply(matrice_rangs, 1, function(x) length(unique(x)) != 3)) # Pas d'ex aequos
 
 friedman.test(matrice_hypo)
@@ -459,31 +459,31 @@ friedman.test(matrice_hypo)
 
 # comparer avec valeur seuil 
 qchisq(0.95,2) # 5.99
-# valeur stat supÈrieure ‡ la valeur seuil donc rejet de H0 
-# p value infÈrieure ‡ 0.05 donc test significatif donc rejet de H0 et on conclut 
+# valeur stat sup√©rieure √† la valeur seuil donc rejet de H0 
+# p value inf√©rieure √† 0.05 donc test significatif donc rejet de H0 et on conclut 
 # qu'il y a au moins une des ditributions differentes , au risque 5% 
 
 
-#------2. Existe t-il une association entre les traitements B et C, et le nombre d'hypoglycÈmies ?
+#------2. Existe t-il une association entre les traitements B et C, et le nombre d'hypoglyc√©mies ?
 
-#---(a) PrÈcisez l'hypothËse nulle que vous souhaitez tester, ainsi que l'hypothËse alternative
-# H0 : mu B = mu C , pas de diffÈrence donc pas d'association ou distributions homogenes 
+#---(a) Pr√©cisez l'hypoth√®se nulle que vous souhaitez tester, ainsi que l'hypoth√®se alternative
+# H0 : mu B = mu C , pas de diff√©rence donc pas d'association ou distributions homogenes 
 # H1 : association 
 
 
 # Ici il y a deux traitements 
-# Appariement car les patients ayant B et C sont les mÍmes , paired data 
+# Appariement car les patients ayant B et C sont les m√™mes , paired data 
 # ce sont des va quantitatives donc : 
-# 2 ech , va quantitatives , appariÈes , donc : test z ecart reduit ? non car n<30 car n=12
+# 2 ech , va quantitatives , appari√©es , donc : test z ecart reduit ? non car n<30 car n=12
 
-# donc wilcoxon pour Èchantillons appariÈs ou student 
+# donc wilcoxon pour √©chantillons appari√©s ou student 
 
 
-###==== wilcoxon appariÈ 
+###==== wilcoxon appari√© 
 
 wilcox.test(mdct_B,mdct_C, paired=T) # V = 45, p-value = 0.6653
 
-###==== t test appari√© (student)
+###==== t test appari√É¬© (student)
 
 delta <- mdct_B - mdct_C
 # ou je fais simplement avec mct B et mct C  
@@ -492,8 +492,8 @@ t.test(mdct_B,mdct_C, paired=T)
 
 #=========================== Exercice 4 ========================================
 
-#***La base de donnÈes velo.txt a ÈtÈ constituÈe de faÁon ‡ Èvaluer l'impact de l'effort sur la concentration
-#sanguine en PSA (Prostatic Specific Antigen) qui est utilisÈ entre autre pour le diagnostic de cancer de la
+#***La base de donn√©es velo.txt a √©t√© constitu√©e de fa√ßon √† √©valuer l'impact de l'effort sur la concentration
+#sanguine en PSA (Prostatic Specific Antigen) qui est utilis√© entre autre pour le diagnostic de cancer de la
 #prostate. 
 
 setwd("C:/Users/gerar/OneDrive/Bureau/MASTER SP/Stat_TP_S1_M1/TP_11_Stat_M1S1")
@@ -501,13 +501,13 @@ df_psa <- read.table("velo.txt", sep = "\t", header = TRUE, dec = ",")
 
 View(df_psa)
 
-#*****1. Le taux de PSA diffÈre-t-il avant et aprËs l'effort ? (psaavt et psaapt)
+#*****1. Le taux de PSA diff√©re-t-il avant et apr√®s l'effort ? (psaavt et psaapt)
 
-#---(a)Donnez l'estimation de la diff√©rence moyenne de PSA entre avant et aprËs
-# l'exercice dans la population dont est issu notre Èchantillon, avec l'intervalle de confiance ‡ 95%
+#---(a)Donnez l'estimation de la diff√É¬©rence moyenne de PSA entre avant et apr√®s
+# l'exercice dans la population dont est issu notre √©chantillon, avec l'intervalle de confiance √† 95%
 
 
-# avant et apres donc on crÈation d'une nouvelle variable delta pour prendre en compte l'appariement. 
+# avant et apres donc on cr√©ation d'une nouvelle variable delta pour prendre en compte l'appariement. 
 
 df_psa$delta <- df_psa$psaapt - df_psa$psaavt
 
@@ -538,14 +538,14 @@ IC # -0.1550317  0.1395429
 # H1 : mu avant != mu apres ou mu_d != 0 
 
 
-#---(c) Quel test pourriez-vous proposer pour rÈpondre ‡ cette question ?
+#---(c) Quel test pourriez-vous proposer pour r√©pondre √† cette question ?
 
-# ce sont des va quantitatives et appariÈes 
+# ce sont des va quantitatives et appari√©es 
 # donc je peux faire test z de l'ecart reduit et test de student 
 
 
-#==== test z de l'ecart reduit pour echantillons appariÈs 
-# conditions de validitÈ 
+#==== test z de l'ecart reduit pour echantillons appari√©s 
+# conditions de validit√© 
 
 # n > 30  ok 
 
@@ -556,8 +556,8 @@ pvalue <- 2 * (1 - pnorm(abs(stat_z)))
 pvalue # 0.9179194
 
 # comparaison avec valeur seuil 1.96 
-# valeur abs de zobs 0.10 infÈrieure ‡ valeur stat donc non rejet de H0 
-# pvalue supÈrieure ‡ 0.05 donc test non significatif on ne rejette pas H0 
-# on conclut donc au risque 5% qu'il n'y a pas de diffÈrence apres et avant le traitement.
+# valeur abs de zobs 0.10 inf√©rieure √† valeur stat donc non rejet de H0 
+# pvalue sup√©rieure √† 0.05 donc test non significatif on ne rejette pas H0 
+# on conclut donc au risque 5% qu'il n'y a pas de diff√©rence apres et avant le traitement.
 
 
