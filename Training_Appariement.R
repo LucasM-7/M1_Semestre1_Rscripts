@@ -1,5 +1,5 @@
 
-# auto test, entraînement objectif partiel 
+# auto test, entraînement 
 
 #=================================== Exercice 1 
 
@@ -7,23 +7,23 @@ avant <- c(167, 150, 175, 163, 149, 165, 168, 177, 140, 156, 162, 205)
 apres <- c(127, 134, 131, 136, 123, 170, 135, 126, 144, 139, 129, 150)
 
 
-#------1. Afficher les boxplots des deux Ã©chantillons de pression artÃ©rielle 
+#------1. boxplots des deux echantillons de pression artÃ©rielle 
 
 boxplot(avant,apres, names=c("avant","apres"),main="Pression arterielle avant et apres traitement")
 
-#------2. On souhaite évaluer l'association entre le traitement et l'hypertension artérielle dans la population
+#------2. évaluation de l'association entre le traitement et l'hypertension artérielle dans la population
 #      d'hypertendus dont est issu l'échantillon. On fixera un risque de première espèce de 5%.
 
 #--- (a) Donnez l'âge de l'estimation de la différence moyenne de pression artérielle de la
 # population dont est issu notre échantillon, avec intervalle de confiance à 95%, en justifiant
 
-# Je définis mon data frame 
+# definition du data frame 
 df <- data.frame(
   avant = c(167, 150, 175, 163, 149, 165, 168, 177, 140, 156, 162, 205),
   apres = c(127, 134, 131, 136, 123, 170, 135, 126, 144, 139, 129, 150)
 )
 
-# je creer ma nouvelle colonne et calcul la moyenne et variance en conséquence
+# creation d'une nouvelle colonne et calcul la moyenne et variance en conséquence
 df$delta <- df$apres - df$avant 
 
 Moy_diff <- mean(df$delta)
@@ -36,13 +36,13 @@ n <- length(df$delta)
 n # 12 
 
 # Conditions du TCL 
-# n > 30 or ici il n'y a que 12 patients donc condition non valide
-# Vérifions si les données suivent loi normale avec un QQPLOT pour pouvoir faire IC avec Loi de Student 
+# n > 30 , condition non valide (12 patients)
+# Vérification si les données suivent loi normale avec un QQPLOT pour pouvoir faire IC avec Loi de Student 
 
 qqnorm(df$delta)
 qqline(df$delta)
 
-# Semble suivrent loi normale nous pouvons ainsi utilisé student 
+# Semble suivrent loi normale nous pouvons ainsi utiliser student 
 # soit 
 moyenne + qt(c(0.025, 0.5, 0.975), n - 1) * sqrt(variance / n) # L'IC de la différence
 
